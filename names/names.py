@@ -11,12 +11,23 @@ names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
 duplicates = []
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+# for name_1 in names_1:
+#     for name_2 in names_2:
+#         if name_1 == name_2:
+#             duplicates.append(name_1)
 
 end_time = time.time()
+names = names_1 + names_2
+x = {}
+for name in names:
+    if not name in x:
+        x[name] = 1
+    else:
+        x[name] += 1
+for key in x:
+    if x[key] > 1:
+        duplicates.append(key)
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print (f"runtime: {end_time - start_time} seconds")
+
 
